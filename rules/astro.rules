@@ -1,0 +1,48 @@
+
+//--------- Impuls Switch Abend
+rule "abendimpuls_minus60"
+when 	Channel 'astro:sun:home_minus60:set#event' triggered START
+then
+	Sunset_abend_impuls.sendCommand(ON)
+	createTimer ( now.plusSeconds ( 6 ) ) [ | Sunset_abend_impuls.sendCommand (OFF) ]
+	logInfo ( "Abendimpuls" , "an/aus" )
+end
+
+//--------- Impuls Switch Dämmerung
+rule "daemmerungimpuls_minus30"
+when Channel 'astro:sun:home_minus30:set#event' triggered START
+then
+	Sunset_daemmerung_impuls.sendCommand(ON)
+	Sunset_daemmerung.sendCommand(ON)
+	createTimer ( now.plusSeconds ( 6 ) ) [ | Sunset_daemmerung_impuls.sendCommand (OFF) ]
+	logInfo ( "Daemmerungimpuls minus 30" , "an/aus" )
+end
+
+//--------- Impuls Switch Dämmerung
+rule "abendimpuls"
+when Channel 'astro:sun:home:set#event' triggered END
+then
+	Sunset_nacht_impuls.sendCommand(ON)
+	createTimer ( now.plusSeconds ( 6 ) ) [ | Sunset_nacht_impuls.sendCommand (OFF) ]
+	logInfo ( "Daemmerungimpuls" , "an/aus" )
+end
+
+//Sonnenaufgang impuls
+rule "morgen_impuls" 
+when
+ Channel 'astro:sun:home:rise#event' triggered START
+ then
+    	Sunset_daemmerung.sendCommand(OFF)
+    	Sunset_morgen_impuls.sendCommand(ON)
+		createTimer ( now.plusSeconds ( 6 ) ) [ | Sunset_morgen_impuls.sendCommand (OFF) ]
+
+logInfo ( "Morgenimpuls" ,"aus" )
+ end
+
+//######## Nachtmodus nach 4 sec. aus --Tasteremulation
+rule "Nachtmodus 4sec. aus"
+when Item Nachtmodus changed to ON
+then
+createTimer ( now.plusSeconds ( 4 ) ) [ | Nachtmodus.sendCommand (OFF) ]
+logInfo ( "Regel Nachtmodus" , "Impuls an/aus" )
+end 

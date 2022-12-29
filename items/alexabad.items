@@ -1,0 +1,17 @@
+
+// ######## Alexa Bad
+Player Player_bad "Musikwiedergabe" {channel="amazonechocontrol:echo:account1:echobad:player"}
+Dimmer MediaProgress_bad "Medien fortschritt %" {channel="amazonechocontrol:echo:account1:echobad:mediaProgress"}
+Dimmer Volume_bad "Lautstärke" {channel="amazonechocontrol:echo:account1:echobad:volume"}
+Switch Shuffle_bad "Zufall" {channel="amazonechocontrol:echo:account1:echobad:shuffle"}
+String ImageUrl_bad "Bild url" {channel="amazonechocontrol:echo:account1:echobad:imageUrl"}
+String Title_bad "Titel" {channel="amazonechocontrol:echo:account1:echobad:title"}
+String ProviderDisplayName_bad "Anbieter name" {channel="amazonechocontrol:echo:account1:echobad:providerDisplayName"}
+String MusicProviderId_bad "Musikanbieter" {channel="amazonechocontrol:echo:account1:echobad:musicProviderId"}
+String StartCommand_bad "Start" {channel="amazonechocontrol:echo:account1:echobad:startCommand"}
+String TextToSpeech_bad "Sprich" {channel="amazonechocontrol:echo:account1:echobad:textToSpeech"}
+Dimmer TextToSpeechVolume_bad "Sprich lautstärke" {channel="amazonechocontrol:echo:account1:echobad:textToSpeechVolume"}
+String LastVoiceCommand_bad "Letzter sprachbefehl" {channel="amazonechocontrol:echo:account1:echobad:lastVoiceCommand"}
+String RadioStationId_bad "Tune in radio stations" {channel="amazonechocontrol:echo:account1:echobad:radioStationId"}
+Switch Radio_bad "Tune in radio" {channel="amazonechocontrol:echo:account1:echobad:radio"}
+

@@ -1,0 +1,24 @@
+var Timer tTest = null
+
+// Testschalter
+
+
+rule "Testschalter ein"
+when Item Testschalter changed to ON
+then
+//logInfo ( "Testschalter Timer" , "an" )    
+//tTest=createTimer(now.plusSeconds(10)) [| Testschalter.sendCommand(OFF) 
+//logInfo ( "Testschalter Timer" , "aus" )  
+//tTest = null ]
+ end
+/*
+rule "Testschalter aus"
+when Item Testschalter changed to OFF
+then
+if(tTest!==null) {
+logInfo ( "Testschalter vorzeitig aus Timer" , "aus" )  
+tTest.cancel
+tTest = null
+}
+end
+*/

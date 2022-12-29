@@ -1,0 +1,15 @@
+// ######## Alaxa Küche
+Player Player_kueche "Musikwiedergabe" {channel="amazonechocontrol:echo:account1:echokueche:player"}
+Dimmer MediaProgress_kueche "Medien fortschritt %" {channel="amazonechocontrol:echo:account1:echokueche:mediaProgress"}
+Dimmer Volume_kueche "Lautstärke" {channel="amazonechocontrol:echo:account1:echokueche:volume"}
+Switch Shuffle_kueche "Zufall" {channel="amazonechocontrol:echo:account1:echokueche:shuffle"}
+String ImageUrl_kueche "Bild url" {channel="amazonechocontrol:echo:account1:echokueche:imageUrl"}
+String Title_kueche "Titel" {channel="amazonechocontrol:echo:account1:echokueche:title"}
+String ProviderDisplayName_kueche "Anbieter name" {channel="amazonechocontrol:echo:account1:echokueche:providerDisplayName"}
+String MusicProviderId_kueche "Musikanbieter" {channel="amazonechocontrol:echo:account1:echokueche:musicProviderId"}
+String StartCommand_kueche "Start" {channel="amazonechocontrol:echo:account1:echokueche:startCommand"}
+String TextToSpeech_kueche "Sprich" {channel="amazonechocontrol:echo:account1:echokueche:textToSpeech"}
+Dimmer TextToSpeechVolume_kueche "Sprich lautstärke" {channel="amazonechocontrol:echo:account1:echokueche:textToSpeechVolume"}
+String LastVoiceCommand_kueche "Letzter sprachbefehl" {channel="amazonechocontrol:echo:account1:echokueche:lastVoiceCommand"}
+String RadioStationId_kueche "Tune in radio stations" {channel="amazonechocontrol:echo:account1:echokueche:radioStationId"}
+Switch Radio_kueche "Tune in radio" {channel="amazonechocontrol:echo:account1:echokueche:radio"}

@@ -1,0 +1,14 @@
+
+rule "BatteryLevel_ipad2 change"
+when
+    Item BatteryLevel_ipad2 changed 
+then
+    if ((BatteryLevel_ipad2.state > 79) && (ShellyPlugSTablettRelais.state == ON)){
+        ShellyPlugSTablettRelais.sendCommand(OFF)
+        logInfo("Netzteil" ,"aus ")
+    }
+   if ((BatteryLevel_ipad2.state < 30) && (ShellyPlugSTablettRelais.state == OFF)){
+        ShellyPlugSTablettRelais.sendCommand(ON)
+        logInfo("Netzteil" ,"an ")
+    } 
+end

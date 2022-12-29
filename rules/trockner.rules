@@ -1,0 +1,53 @@
+rule "Trockner Consumption State Machine"
+
+when
+    Item ShellyPlugSTrocknerLeistungAktuell changed or Time cron "5 0 * * * ?" 
+then
+    val power = (ShellyPlugSTrocknerLeistungAktuell.averageSince(now.minusMinutes(5))).floatValue
+    
+    var message = ""
+     if (Debugmode.state == ON){
+    logInfo("TROCKNER_LEISTUNG_CHANGED", "Wert " + ShellyPlugSTrocknerLeistungAktuell.state + " ergibt einen Durschnitt von " + power)
+     }
+      
+    if (power == 0) {
+        message = "AUS"
+         if (Trockner_laeuft.state == 1){
+            Trockner_laeuft.postUpdate(0)
+         }
+    }
+    
+    if (power > 0 && power < 2) {
+        message =  "STANDBY"
+         if (Trockner_laeuft.state == 1){
+            Trockner_laeuft.postUpdate(0)
+
+            
+            TextToSpeech_kueche.sendCommand("Hop Hop Hop, Trockner ist fertig")
+            //TextToSpeech.sendCommand("Hop Hop Hop, Trockner ist fertig")
+            
+        }
+    }
+
+    if (power > 2 && power < 50) {
+        message =  "AUFLOCKERN"
+        if (Trockner_auflockern.state == 1){
+            Trockner_auflockern.postUpdate(0)
+            TextToSpeech_kueche.sendCommand("Hallo, Trockner ist fertig")
+            //TextToSpeech.sendCommand("Hallo, Trockner ist fertig")
+
+        }
+    }
+     if (power > 150 ) {
+        message =  "TROCKNEN"
+         if (Trockner_laeuft.state == 0){
+            Trockner_laeuft.postUpdate(1)
+            Trockner_auflockern.postUpdate(1)
+        }
+    }
+     if (Debugmode.state == ON){
+        logInfo("Trockner",message)
+     }
+        Trockner_Status.postUpdate(message)
+             
+end

@@ -1,0 +1,9 @@
+var preis_pro_kwh = 0.30
+
+rule "Stromkosten"
+when Item TotalIn received update 
+    
+then
+    Gesammtkosten_strom.postUpdate(TotalIn.state as DecimalType * preis_pro_kwh)
+    
+end

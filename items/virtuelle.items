@@ -1,0 +1,8 @@
+// Astro
+Switch  Sunset_abend_impuls         
+Switch  Sunset_daemmerung           
+Switch  Sunset_daemmerung_impuls    
+Switch  Sunset_nacht_impuls         
+Switch  Sunset_morgen_impuls        
+Switch  Nachtmodus     
+Switch  Debugmode

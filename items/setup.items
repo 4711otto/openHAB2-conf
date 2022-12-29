@@ -1,0 +1,58 @@
+// -------- Automatik anwahl für Regeln Zeit und Astro
+Switch  Roller_auto_kueche_auf              "Automatik Rolladen auf Fenster Küche"      (Setup) 
+Switch  Roller_auto_wohn1_auf               "Automatik Rolladen auf Fenster Wohnen"     (Setup) 
+Switch  Roller_auto_wohn2_auf               "Automatik Rolladen auf Tür Wohnen"         (Setup) 
+Switch  Roller_auto_essen1_auf              "Automatik Rolladen auf Fenster Essen"      (Setup) 
+Switch  Roller_auto_essen2_auf              "Automatik Rolladen auf Tür Essen"          (Setup) 
+Switch  Roller_auto_kind1_auf               "Automatik Rolladen auf Fenster Kind 1"     (Setup) 
+Switch  Roller_auto_kind2_auf               "Automatik Rolladen auf Fenster Kind 2"     (Setup) 
+Switch  Roller_auto_bad1_auf                "Automatik Rolladen auf Fenster Bad links"  (Setup) 
+Switch  Roller_auto_bad2_auf                "Automatik Rolladen auf Fenster Bad rechts" (Setup) 
+Switch  Roller_auto_schlaf_auf              "Automatik Rolladen auf Fenster Schlafen"   (Setup) 
+Switch  Roller_auto_flur_auf                "Automatik Rolladen auf Fenster Flur"       (Setup) 
+// -------- Automatik anwahl für Regeln Zeit und Astro
+Switch  Roller_auto_kueche_ab               "Automatik Rolladen ab Fenster Küche"       (Setup) 
+Switch  Roller_auto_wohn1_ab                "Automatik Rolladen ab Fenster Wohnen"      (Setup) 
+Switch  Roller_auto_wohn2_ab                "Automatik Rolladen ab Tür Wohnen"          (Setup) 
+Switch  Roller_auto_essen1_ab               "Automatik Rolladen ab Fenster Essen"       (Setup) 
+Switch  Roller_auto_essen2_ab               "Automatik Rolladen ab Tür Essen"           (Setup) 
+Switch  Roller_auto_kind1_ab                "Automatik Rolladen ab Fenster Kind 1"      (Setup) 
+Switch  Roller_auto_kind2_ab                "Automatik Rolladen ab Fenster Kind 2"      (Setup) 
+Switch  Roller_auto_bad1_ab                 "Automatik Rolladen ab Fenster Bad links"   (Setup) 
+Switch  Roller_auto_bad2_ab                 "Automatik Rolladen ab Fenster Bad rechts"  (Setup) 
+Switch  Roller_auto_schlaf_ab               "Automatik Rolladen ab Fenster Schlafen"    (Setup) 
+Switch  Roller_auto_flur_ab                 "Automatik Rolladen ab Fenster Flur"        (Setup) 
+// --------- Anwahl Regel
+Switch  Roller_auto_ab_zeit                 "Automatik Rolladen ab nach Zeit"           (Setup) 
+Switch  Roller_auto_ab_astro                "Automatik Rolladen ab nach Astro"          (Setup) 
+Switch  Roller_auto_auf_zeit                "Automatik Rolladen auf nach Zeit"          (Setup) 
+Switch  Roller_auto_auf_astro               "Automatik Rolladen auf nach Astro"         (Setup) 
+// --------- Freigabe Alexa "Alle"
+Switch  Roller_alexa_kueche_alle              "Alexafreigabe Rolladen Fenster Küche"      (Setup) 
+Switch  Roller_alexa_wohn1_alle               "Alexafreigabe Rolladen Fenster Wohnen"     (Setup) 
+Switch  Roller_alexa_wohn2_alle               "Alexafreigabe Rolladen Tür Wohnen"         (Setup) 
+Switch  Roller_alexa_essen1_alle              "Alexafreigabe Rolladen Fenster Essen"      (Setup) 
+Switch  Roller_alexa_essen2_alle              "Alexafreigabe Rolladen Tür Essen"          (Setup) 
+Switch  Roller_alexa_kind1_alle               "Alexafreigabe Rolladen Fenster Kind 1"     (Setup) 
+Switch  Roller_alexa_kind2_alle               "Alexafreigabe Rolladen Fenster Kind 2"     (Setup) 
+Switch  Roller_alexa_bad1_alle                "Alexafreigabe Rolladen Fenster Bad links"  (Setup) 
+Switch  Roller_alexa_bad2_alle                "Alexafreigabe Rolladen Fenster Bad rechts" (Setup) 
+Switch  Roller_alexa_schlaf_alle              "Alexafreigabe Rolladen Fenster Schlafen"   (Setup) 
+Switch  Roller_alexa_flur_alle                "Alexafreigabe Rolladen Fenster Flur"       (Setup) 
+
+// ------- Bewegungsmelder Aktivieren
+Switch  Haustuer_licht_bewegung_auto        "Bewegungsmelder aktivieren"                (Setup) 
+Switch  Haustuer_licht_abend_auto           "Sonnenuntergang Haustuer automatik ein"    (Setup) 
+Switch  Haustuer_licht_abend_auto_aus_zeit  "Haustuer automatik aus nach Zeit"          (Setup) 
+Switch  Haustuer_licht_morgen_auto          "Sonnenaufgang Haustür automatik"           (Setup) 
+Switch  Einfahrt_licht_bewegung_auto        "Bewegungsmelder aktivieren"                (Setup) 
+Switch  Partymodus_terrasse                 "Partymodus Terrasse"                       (Setup) 
+
+// -------- Steckdosen Astro 
+Switch  Steckdosen_wohnen_ein_astro         "Steckdosen Wohnzimmer Ein Sonnenuntergang" (Setup) 
+Switch  Steckdosen_essen_ein_astro          "Steckdosen Esszimmer Ein Sonnenuntergang"  (Setup) 
+Switch  Steckdose_wohnen_auto               "Automatik Steckdose Wohnen"                (Setup) 
+Switch  Steckdose_essen_auto                "Automatik Steckdose Essen"                 (Setup) 
+
+// -------- Testschalter
+Switch  Testschalter                        "Testschalter"                              (Setup) 

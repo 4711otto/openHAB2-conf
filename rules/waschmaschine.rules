@@ -1,0 +1,46 @@
+rule "Waschmaschine Consumption State Machine"
+
+when
+    Item ShellyPlugSWaschmaschineLeistungAktuell changed or Time cron "10 0 * * * ?" 
+then
+    val power = (ShellyPlugSWaschmaschineLeistungAktuell.averageSince(now.minusMinutes(2))).floatValue
+   
+    var message = ""
+     if (Debugmode.state == ON){
+    logInfo("TROCKNER_LEISTUNG_CHANGED", "Wert " + ShellyPlugSWaschmaschineLeistungAktuell.state + " ergibt einen Durschnitt von " + power)
+     }
+    if (power == 0 ) {
+        message =  "AUS"
+        if (Waschmaschine_laeuft.state == 1){
+            Waschmaschine_laeuft.postUpdate(0)
+            //TextToSpeech3.sendCommand("Beweg dich, Waschmaschine ist fertig")
+        }
+    }
+    
+    if (power > 0 && power < 2) {
+        message =  "STANDBY"
+          if (Waschmaschine_laeuft.state == 1){
+            Waschmaschine_laeuft.postUpdate(0)
+            //if ( Alexa_mute.state == ON){
+            TextToSpeech_kueche.sendCommand("Hallo, Waschmaschine ist fertig")
+            //TextToSpeech.sendCommand("Beweg dich, Waschmaschine ist fertig")
+           // }
+        }
+
+    }
+
+    if (power > 10 && power < 150) {
+        message =  "WASCHEN"
+        if (Waschmaschine_laeuft.state == 0){
+            Waschmaschine_laeuft.postUpdate(1)
+        }
+    }
+     if (power > 150 ) {
+        message =  "HEIZEN"
+    }
+     if (Debugmode.state == ON){
+    logInfo("washer",message)
+     }
+    Waschmaschine_Status.postUpdate(message)
+        
+end

@@ -1,0 +1,7 @@
+Bridge icloud:account:myaccount [appleId="michael.schramm@kaiser-hochbau.de", password="MiScKHB2020", refreshTimeInMinutes=5]
+{
+    
+    Thing device myiPad "iPad2 neu" @ "World" [deviceId="wZnGKH4+MNx4IEZ9QN1gejOPHwgXtzJKzECGEQPisA0m8lLWt5gal+HYVNSUzmWV"]
+    // Thing device myiPad2 "iPad2 alt" @ "World" [deviceId="+t7hvNLiaRVjhgyZO6f8pbJaWSlCBhHhA/HcwtIIoiaF0IwtWZmVoOHYVNSUzmWV"]
+    //  Thing device mymini "iPad mini" @ "World" [deviceId="Dv/6vNi12tloFws3qStwseJmbNOXRUazMvFehVpoqZik3mIZmRQKf+HYVNSUzmWV"]
+}

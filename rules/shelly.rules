@@ -1,0 +1,468 @@
+//import java.org.eclipse.smarthome.model.script.actions
+
+var Timer tweg = null
+// Tasterveriegelung
+rule "Rollerauto ab zeit aus"
+when Item Roller_auto_ab_astro changed to ON
+then
+	Roller_auto_ab_zeit.sendCommand(OFF)
+end
+
+// Tasterveriegelung
+rule "Rollerauto auf zeit aus"
+when Item Roller_auto_auf_astro changed to ON
+then
+	Roller_auto_auf_zeit.sendCommand(OFF)
+end
+
+// Tasterveriegelung
+rule "Rollerauto ab Astro aus"
+when Item Roller_auto_ab_zeit changed to ON
+then
+	Roller_auto_ab_astro.sendCommand(OFF)
+end
+
+// Tasterveriegelung
+rule "Rollerauto auf Astro aus"
+when Item Roller_auto_auf_zeit changed to ON
+then
+	Roller_auto_auf_astro.sendCommand(OFF)
+end
+
+
+
+// alle Rolladen fahren die automatik AUF + AB haben
+rule "Alle Roller fahren"
+when Item ShellyRoll_all changed 
+then
+var pos = ShellyRoll_all.state
+
+if (Roller_alexa_kueche_alle.state == ON){
+ShellyKueche.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_wohn1_alle.state == ON){
+ShellyWohnFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_wohn2_alle.state == ON){
+ShellyWohnTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_essen1_alle.state == ON){
+ShellyEssenFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_essen2_alle.state == ON){
+ShellyEssenTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_kind1_alle.state == ON){
+ShellyKind1.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_kind2_alle.state == ON){
+ShellyKind2.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_bad1_alle.state == ON){
+ShellyBadL.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_bad2_alle.state == ON){
+ShellyBadR.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_schlaf_alle.state == ON){
+ShellySchlafen.sendCommand(pos.toString)
+}
+
+if (Roller_alexa_flur_alle.state == ON){
+ShellyFlur.sendCommand(pos.toString)
+}
+
+//logInfo("Roller werden auf" ,"pos " + pos.toString)
+end
+
+// alle Rolladen fahren
+rule "Alle Roller ab fahren uhrzeit"
+when
+Time cron "0 0 19 * * ?" // and ST2haustuer changed on
+then
+
+if (Roller_auto_ab_zeit.state == ON){
+var pos = "20"
+
+if (Roller_auto_kueche_ab.state == ON) {
+ShellyKueche.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn1_ab.state == ON){
+ShellyWohnFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn2_ab.state == ON) {
+ShellyWohnTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind1_ab.state == ON){
+ShellyEssenFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind2_ab.state == ON) {
+ShellyEssenTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_schlaf_ab.state == ON) {
+ShellyKind1.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen1_ab.state == ON){
+ShellyKind2.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen2_ab.state == ON){
+ShellyBadL.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad1_ab.state == ON) {
+ShellyBadR.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad2_ab.state == ON){
+ShellySchlafen.sendCommand(pos.toString)
+}
+
+if (Roller_auto_flur_ab.state == ON) {
+ShellyFlur.sendCommand(pos.toString)
+}
+
+logInfo("Roller werden auf" ,"pos " + pos.toString)
+}
+end
+
+// alle Rolladen fahren auf
+rule "Alle Roller auf fahren uhrzeit"
+when
+Time cron "0 0 8 * * ?" // and ST2haustuer changed on
+then
+
+if (Roller_auto_auf_zeit.state == ON){
+var pos = "100"
+
+if (Roller_auto_kueche_auf.state == ON) {
+ShellyKueche.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn1_auf.state == ON){
+ShellyWohnFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn2_auf.state == ON) {
+ShellyWohnTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind1_auf.state == ON){
+ShellyEssenFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind2_auf.state == ON) {
+ShellyEssenTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_schlaf_auf.state == ON) {
+ShellyKind1.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen1_auf.state == ON){
+ShellyKind2.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen2_auf.state == ON){
+ShellyBadL.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad1_auf.state == ON) {
+ShellyBadR.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad2_auf.state == ON){
+ShellySchlafen.sendCommand(pos.toString)
+}
+
+if (Roller_auto_flur_auf.state == ON) {
+ShellyFlur.sendCommand(pos.toString)
+}
+
+logInfo("Roller werden auf" ,"pos " + pos.toString)
+}
+end
+
+// alle Rolladen fahren Astro
+rule "Alle Roller ab fahren Astro"
+when
+ Channel 'astro:sun:home_minus60:set#event' triggered START
+then
+
+if (Roller_auto_ab_astro.state == ON){
+var pos = "20"
+
+if (Roller_auto_kueche_ab.state == ON) {
+ShellyKueche.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn1_ab.state == ON){
+ShellyWohnFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn2_ab.state == ON) {
+ShellyWohnTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind1_ab.state == ON){
+ShellyEssenFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind2_ab.state == ON) {
+ShellyEssenTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_schlaf_ab.state == ON) {
+ShellyKind1.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen1_ab.state == ON){
+ShellyKind2.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen2_ab.state == ON){
+ShellyBadL.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad1_ab.state == ON) {
+ShellyBadR.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad2_ab.state == ON){
+ShellySchlafen.sendCommand(pos.toString)
+}
+
+if (Roller_auto_flur_ab.state == ON) {
+ShellyFlur.sendCommand(pos.toString)
+}
+
+logInfo("Roller werden auf" ,"pos " + pos.toString)
+}
+end
+
+
+// alle Rolladen fahren auf
+rule "Alle Roller fahren auf Astro"
+when
+ Channel 'astro:sun:home:rise#event' triggered START
+then
+
+if (Roller_auto_auf_astro.state == ON){
+var pos = "100"
+
+if (Roller_auto_kueche_auf.state == ON) {
+ShellyKueche.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn1_auf.state == ON){
+ShellyWohnFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_wohn2_auf.state == ON) {
+ShellyWohnTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind1_auf.state == ON){
+ShellyEssenFensterRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_kind2_auf.state == ON) {
+ShellyEssenTuerRoll.sendCommand(pos.toString)
+}
+
+if (Roller_auto_schlaf_auf.state == ON) {
+ShellyKind1.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen1_auf.state == ON){
+ShellyKind2.sendCommand(pos.toString)
+}
+
+if (Roller_auto_essen2_auf.state == ON){
+ShellyBadL.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad1_auf.state == ON) {
+ShellyBadR.sendCommand(pos.toString)
+}
+
+if (Roller_auto_bad2_auf.state == ON){
+ShellySchlafen.sendCommand(pos.toString)
+}
+
+if (Roller_auto_flur_auf.state == ON) {
+ShellyFlur.sendCommand(pos.toString)
+}
+
+logInfo("Roller werden auf" ,"pos " + pos.toString)
+}
+end
+
+// Blub rules
+
+rule "blub power"
+when Item Shelly_blub_power changed 
+then
+if (Shelly_blub_power.state == ON){
+    Shellyblub1Power.sendCommand("on")
+ logInfo ( "blub power" , "an" )   
+    Shellyblub2Power.sendCommand("on")
+}
+else {
+    Shellyblub1Power.sendCommand("off")
+ logInfo ( "blub power" , "aus" )   
+    Shellyblub2Power.sendCommand("off")
+} 
+end
+
+
+rule "shelly_blub_DimEvent"
+when
+	Item Shelly_blub_slider changed or Item Shelly_blub_slider_temp changed  or Item Shelly_blub_effects changed
+then
+	var jsonString = "{"
+	var white_color = ""
+	val Number dimbrighness = Shelly_blub_slider.state as DecimalType;
+	val Number dimtemp = Shelly_blub_slider_temp.state as DecimalType;
+	if (Shelly_blub_color_white.state == OFF){
+		white_color = "\"white\""
+	}
+
+	if (dimbrighness > 0){
+			jsonString = jsonString + "\"ison\":" + "\"on\""
+	}
+	else{
+			jsonString = jsonString + "\"ison\":" + "\"off\""
+	}
+    jsonString = jsonString + ",\"mode\":" + white_color.toString//"\"white\"" //Shellyblub1mode.state.toString
+	jsonString = jsonString + ",\"temp\":" + dimtemp.toString
+	jsonString = jsonString + ",\"brightness\":" + dimbrighness.toString
+    jsonString = jsonString + ",\"effect\":" + Shelly_blub_effects.state.toString
+	jsonString = jsonString + "}"
+	sendCommand(Shellyblub1Cmd, jsonString)
+    sendCommand(Shellyblub2Cmd, jsonString)
+end
+
+
+rule "React on Picker (Shelly_blub_picker) change/update"
+when
+	Item Shelly_blub_picker changed or Item Shelly_blub_effects changed
+then
+var	white_color =""
+ var  hsbValue = Shelly_blub_picker.state as HSBType
+ var   hueValue   = hsbValue.hue.intValue.toString
+ var   satValue = hsbValue.saturation.intValue.toString
+ var   brigtValue  = hsbValue.brightness.intValue.toString
+ val   redValue = Math::round(( Shelly_blub_picker.state as HSBType).getRed.intValue *2.55) 
+ val   greenValue = Math::round((Shelly_blub_picker.state as HSBType).getGreen.intValue *2.55)
+ val   blueValue = Math::round((Shelly_blub_picker.state as HSBType).getBlue.intValue *2.55)
+ 
+logInfo("LED_RGB_Values.rules", "H:" + hueValue + " S:" + satValue + " B:" + brigtValue)
+logInfo("LED_RGB_Values.rules", "R:" + redValue + " G:" + greenValue + " B:" + blueValue)
+
+if (Shelly_blub_color_white.state == ON){
+	white_color = "\"color\""
+	}
+
+var jsonString = "{"
+		jsonString = jsonString + "\"ison\":" + "\"off\""
+	
+	
+    jsonString = jsonString + ",\"mode\":" + white_color.toString 
+	jsonString = jsonString + ",\"red\":" + redValue.toString
+	jsonString = jsonString + ",\"green\":" + greenValue.toString
+	jsonString = jsonString + ",\"blue\":" + blueValue.toString
+	jsonString = jsonString + ",\"gain\":" + satValue.toString
+	jsonString = jsonString + ",\"effect\":" + Shelly_blub_effects.state.toString
+	jsonString = jsonString + "}"
+	sendCommand(Shellyblub1Cmd, jsonString)
+    sendCommand(Shellyblub2Cmd, jsonString)
+end
+
+// LED Band on / off
+rule "LEDBand on off"
+when Item Shelly_led_power changed  
+	
+then
+	if (Shelly_led_power.state == ON){
+		Shellyrgbpower.sendCommand("on")
+		logInfo ( "LEDBand power" , "an" )   
+	}
+	else{
+	Shellyrgbpower.sendCommand("off")
+	logInfo ( "LEDBand power" , "off" )   	
+	}
+end
+
+
+// Wegbeleuchtung Terrasse Einfahrt über Timer ein
+rule "Terrassentimer ein"
+when Item Shelly250Terrasse_impuls changed to ON 
+then
+if (Partymodus_terrasse.state == OFF){
+Shelly250Terrasse.sendCommand(ON)
+}
+Shelly250Einfahrt.sendCommand(ON)
+logInfo ( "Wegbeleuchtung Timer" , "an" )    
+tweg = createTimer(now.plusSeconds(300)) [| 
+if (Partymodus_terrasse.state == OFF){
+Shelly250Terrasse.sendCommand(OFF)
+}
+Shelly250Einfahrt.sendCommand(OFF)
+Shelly250Terrasse_impuls.sendCommand(OFF)
+logInfo ( "Wegbeleuchtung Timer" , "aus" ) 
+tweg = null ]
+end
+
+// Wegbeleuchtung Terrasse Einfahrt über Bewegung ein
+rule "Terrasse Bewegung ein"
+when Item Shelly251EinfahrtInput changed to "1"
+then
+if (Einfahrt_licht_bewegung_auto.state == ON){
+if (Partymodus_terrasse.state == OFF){
+Shelly250Terrasse.sendCommand(ON)
+}
+Shelly250Einfahrt.sendCommand(ON)
+logInfo ( "Wegbeleuchtung Bewegung" , "an" )    
+tweg = createTimer(now.plusSeconds(300)) [| 
+if (Partymodus_terrasse.state == OFF){
+Shelly250Terrasse.sendCommand(OFF)
+}
+Shelly250Einfahrt.sendCommand(OFF)
+Shelly250Terrasse_impuls.sendCommand(OFF)
+logInfo ( "Wegbeleuchtung Bewegung" , "aus" ) 
+tweg = null ]
+}
+end
+
+
+
+// Wegbeleuchtung Terrasse Einfahrt aus oder Abbruch
+rule "Terrassentimer aus"
+when Item Shelly250Terrasse_impuls changed to OFF
+then
+if (tweg !== null){
+if (Partymodus_terrasse.state == OFF){
+Shelly250Terrasse.sendCommand(OFF)
+}
+Shelly250Einfahrt.sendCommand(OFF)
+logInfo ( "Wegbeleuchtung Timer vorzeitig" , "aus" )    
+tweg.cancel
+tweg = null
+}
+end

@@ -1,0 +1,81 @@
+Strategies {
+	everyMinute : "0 * * * * ?"
+	every5Minute : "*/5 * * * * ?"
+	everyHour : "0 0 * * * ?"
+	everyDay  : "0 0 0 * * ?"
+	default = everyChange
+}
+
+Items {
+
+Nachtmodus : strategy = everyChange, restoreOnStartup
+Shelly3HaustuerBewegung : strategy = everyChange, restoreOnStartup
+PowerBasic6397 : strategy = everyChange, restoreOnStartup
+Shelly250Terrasse : strategy = everyChange, restoreOnStartup
+Shelly251EinfahrtInput : strategy = everyChange, restoreOnStartup
+Shelly250Einfahrt : strategy = everyChange, restoreOnStartup
+Shelly250Terrasse_impuls : strategy = everyChange, restoreOnStartup
+
+// energie
+Oelstand : strategy = everyChange, every5Minute, restoreOnStartup
+PowerCurr : strategy = everyChange, every5Minute,restoreOnStartup
+TotalIn : strategy = everyChange, restoreOnStartup
+
+
+//Setup
+Roller_auto_ab_astro  : strategy = everyChange, restoreOnStartup
+Roller_auto_ab_zeit : strategy = everyChange, restoreOnStartup
+Roller_auto_auf_zeit : strategy = everyChange, restoreOnStartup
+Roller_auto_auf_astro : strategy = everyChange, restoreOnStartup
+Roller_auto_bad1_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_bad1_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_bad2_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_bad2_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_essen1_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_essen1_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_essen2_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_essen2_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_flur_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_flur_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_kind1_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_kind1_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_kind2_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_kind2_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_kueche_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_kueche_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_schlaf_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_schlaf_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_wohn1_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_wohn1_auf : strategy = everyChange, restoreOnStartup
+Roller_auto_wohn2_ab : strategy = everyChange, restoreOnStartup
+Roller_auto_wohn2_auf : strategy = everyChange, restoreOnStartup
+
+Haustuer_licht_bewegung_auto : strategy = everyChange, restoreOnStartup
+Haustuer_licht_abend_auto : strategy = everyChange, restoreOnStartup
+Haustuer_licht_morgen_auto : strategy = everyChange, restoreOnStartup
+Haustuer_licht_abend_auto_aus_zeit : strategy = everyChange, restoreOnStartup
+
+Partymodus_terrasse : strategy = everyChange, restoreOnStartup
+Einfahrt_licht_bewegung_auto : strategy = everyChange, restoreOnStartup
+
+
+Steckdosen_wohnen_ein_astro : strategy = everyChange, restoreOnStartup
+Steckdosen_essen_ein_astro	: strategy = everyChange, restoreOnStartup
+Steckdose_essen_auto : strategy = everyChange, restoreOnStartup
+Steckdose_wohnen_auto : strategy = everyChange, restoreOnStartup
+
+ShellyPlugSWaschmaschineLeistungAktuell : strategy = everyMinute, everyChange, restoreOnStartup
+ShellyPlugSWaschmaschineRelais : strategy = everyChange, restoreOnStartup
+Waschmaschine_laeuft : strategy = everyChange, restoreOnStartup
+Waschmaschine_Status : strategy = everyChange, restoreOnStartup
+
+ShellyPlugSTrocknerLeistungAktuell : strategy = everyMinute, everyChange, restoreOnStartup
+Trockner_Status : strategy = everyChange, restoreOnStartup
+Trockner_laeuft : strategy = everyChange, restoreOnStartup
+Trockner_auflockern : strategy = everyChange, restoreOnStartup
+
+ShellyPlugSTablettLeistungAktuell : strategy = everyChange, restoreOnStartup
+ShellyPlugSTablettRelais : strategy = everyChange, restoreOnStartup
+
+
+}

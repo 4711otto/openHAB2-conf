@@ -1,0 +1,11 @@
+var Number Tankhoehe = 150
+var literpro_cm = 0
+
+rule "oeltank berechnen"
+
+when Item OeltankAbstandsmessung received update 
+    
+then
+   var Oelstand_aktuell = Tankhoehe - OeltankAbstandsmessung.state as DecimalType
+    Oelstand.postUpdate(Oelstand_aktuell)
+end

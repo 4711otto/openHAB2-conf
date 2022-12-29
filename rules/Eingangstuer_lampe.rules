@@ -1,0 +1,57 @@
+rule "Eingangslampe ein Bewegung"
+when
+Item Shelly3HaustuerBewegung changed to ON
+then
+if ((Sunset_daemmerung.state == ON) && (Haustuer_licht_bewegung_auto.state == ON) && (PowerBasic6397.state == OFF))
+{
+PowerBasic6397.sendCommand(ON)
+createTimer(now.plusSeconds(60)) [| PowerBasic6397.sendCommand(OFF)]
+}
+end
+
+rule "Licht Haustuer ein Sonnenstand"
+when 
+Item Sunset_nacht_impuls changed to ON 
+then 
+if (Haustuer_licht_abend_auto.state == ON ){
+PowerBasic6397.sendCommand(ON)
+logInfo ("Regel Haustuer Abend" , "ein" ) 
+}
+end 
+
+
+  rule "Licht Haustuer aus cron" 
+ when //jeden Abend um 00.00 Uhr
+ Time cron "0 0 0 * * ?" 
+ then 
+ if (Haustuer_licht_abend_auto_aus_zeit.state == ON ){
+	PowerBasic6397.sendCommand(OFF) 
+	logInfo ("Regel Haustuer 00:00" , "aus" ) 
+ } 
+ end 
+
+ rule "Licht Haustuer an cron"
+ when //jeden Abend um 06.00 Uhr
+ Time cron "0 0 6 * * ?" // and ST2haustuer changed on
+ then
+  if ( Haustuer_licht_morgen_auto.state == ON) { 
+     PowerBasic6397.sendCommand(ON)
+	 logInfo ( "Regel Lichtband Haustuer" , "an" ) }
+ else
+	 {
+ 	 logInfo ( "Unterdrueckt !!  Regel Lichtband Haustuer" , "an" )
+ 	 } 
+  end
+
+ 
+//schaltet nach Sonnenaufgang Licht aus
+rule "Licht Haustuer aus daemmerung" 
+when 
+	Item Sunset_morgen_impuls changed to ON
+ then
+    PowerBasic6397.sendCommand(OFF) 	
+	logInfo ( "Regel Lichtband Haustuer daemmerung" ,"aus" )
+ end
+ 
+
+

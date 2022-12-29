@@ -1,0 +1,8 @@
+UP=open
+DOWN=close
+STOP=stop
+0=close
+100=open
+open=0
+close=100
+null=

@@ -1,0 +1,179 @@
+sitemap default label="Michael und Angela" {
+        Frame label="OWeather" {
+                Default item=CurrentTimeStamp label="Letzte Messung"
+                Default item=CurrentCondition
+                Default item=CurrentIcon
+                Default item=CurrentTemperature label="Außentemperatur"
+                Default item=CurrentPressure label="Luftdruck "
+                Default item=CurrentHumidity label="Luftfeuchtigkeit"
+                Default item=CurrentWindSpeed label="Windgeschwindigkeit"
+                Default item=CurrentRain label="Regen"
+                Default item=CurrentSnow label="Schnee"
+                //Default item=CurrentCloudiness
+        }
+
+        Frame label="Astro" {
+
+                Default item=Sunrise_Time
+                Default item=Sunset_Time
+                //Default item=Sunset_daemmerung
+
+        }
+    Frame label="Erdgeschoss" icon="groundfloor" {
+        Group item=GF_Wardrobe
+        Group item=GF_Hallway{
+                Slider item=ShellyFlur label="Roller Fenster [%d %%]" icon="rollershutter" 
+                }
+        Group item=GF_Kitchen{
+               Slider item=ShellyKueche label="Roller Fenster [%d %%]" icon="rollershutter" 
+               }
+        Group item=GF_Dining{
+               Default item=Shelly2WohnSteckdFenstGarten
+               Slider item=ShellyEssenFensterRoll label="Roller Fenster [%d %%]" icon="rollershutter" 
+               Slider item=ShellyEssenTuerRoll label="Roller Tür [%d %%]" icon="rollershutter" 
+               }
+        Group item=GF_Living {
+               Default item=Shelly1WohnSteckdFenstSeit
+               Slider item=ShellyWohnFensterRoll label="Roller Fenster [%d %%]" icon="rollershutter" 
+               Slider item=ShellyWohnTuerRoll label="Roller Tür [%d %%]" icon="rollershutter" 
+               }
+        Group item=GF_KidsRoom label="Kind1"{
+               Slider item=ShellyKind1 label="Roller Fenster [%d %%]" icon="rollershutter" 
+               }
+        Group item=GF_KidsRoom label="Kind2"{
+               Slider item=ShellyKind2 label="Roller Fenster [%d %%]" icon="rollershutter" 
+               }
+        Group item=GF_Bathroom{
+               Slider item=ShellyBadL label="Roller Fenster links[%d %%]" icon="rollershutter" 
+               Slider item=ShellyBadR label="Roller Fenster rechts[%d %%]" icon="rollershutter" 
+              //Default item=Shellyblub1power //mappings=[OFF="aus",ON="an"]
+                //Default item=Shellyblub1status
+                //Default item=Shellyblub1gain
+                Switch item=Shelly_blub_power label="Shelly Blub ein / aus" mappings=[OFF="aus",ON="an"] 
+
+                Switch item=Shelly_blub_color_white mappings=[ON="Color",OFF="White"]
+                Slider item=Shelly_blub_slider visibility=[Shelly_blub_color_white == OFF]
+                Setpoint item=Shelly_blub_slider_temp  step=500 minValue=3000 maxValue=6500 visibility=[Shelly_blub_color_white == OFF]
+                Colorpicker item=Shelly_blub_picker visibility=[Shelly_blub_color_white == ON]
+               
+        }
+        Group item=GF_Bedroom{
+                Slider item=ShellySchlafen label="Roller Fenster [%d %%]" icon="rollershutter" 
+                //Switch item=Shellyrgbpower label="LED Band" mappings=[OFF="aus",ON="an"] 
+               }
+    }
+
+    Frame label="Keller" icon="cellar" {
+        Group item=C_Boiler
+        Group item=C_LaundryRoom
+        Group item=C_StorageRoom
+        Group item=C_Toilet
+    }
+    Frame label="Draußen" icon="garden" {
+        Group item=OU_FrontYard 
+        Group item=OU_Entryway label="Haustür"{
+          Default item=PowerBasic6397 label="Haustür Licht"  icon="light"
+        }
+        Group item=OU_Outside
+        Group item=OU_Terrace{
+            Default item=Shelly250Terrasse label="Licht"  icon="light"
+            Default item=Shelly250Terrasse_impuls label="Licht Weg Timer" icon="light"
+        }
+        Group item=OU_Garage
+        Group item=OU_Shed
+        Group item=OU_Driveway{
+            Default item=Shelly250Einfahrt
+            Default item=Shelly251EinfahrtInput
+        }
+        Group item=OU_Backyard
+    }
+
+    Frame label="Gruppen" {
+        Text label="Rolladen" icon="rollershutter" {
+         Switch item=ShellyRoll_all icon="rollershutter" mappings=[100="OPEN", 85="3/4", 70="1/2",60="1/3", 0="CLOSE"]
+         Slider item=ShellyKueche label="Roller Fenster Küche[%d %%]" icon="rollershutter" 
+         Slider item=ShellyEssenFensterRoll label="Roller Fenster Essem [%d %%]" icon="rollershutter" 
+         Slider item=ShellyEssenTuerRoll label="Roller Tür Essen [%d %%]" icon="rollershutter" 
+         Slider item=ShellyEssenFensterRoll label="Roller FensterWohnen [%d %%]" icon="rollershutter" 
+         Slider item=ShellyEssenTuerRoll label="Roller Tür Wohnen [%d %%]" icon="rollershutter" 
+         Slider item=ShellyKind1 label="Roller Fenster Kind 1 [%d %%]" icon="rollershutter" 
+         Slider item=ShellyKind2 label="Roller Fenster Kind 2 [%d %%]" icon="rollershutter" 
+         Slider item=ShellyBadL label="Roller Fenster Bad links[%d %%]" icon="rollershutter" 
+         Slider item=ShellyBadR label="Roller Fenster Bad rechts[%d %%]" icon="rollershutter" 
+         Slider item=ShellySchlafen label="Roller Fenster Schlafen [%d %%]" icon="rollershutter" 
+         Slider item=ShellyFlur label="Roller Fenster Flur [%d %%]" icon="rollershutter"
+        }
+
+        Text label="Steckdose" icon="poweroutlet" {
+            Default item=Shelly1WohnSteckdFenstSeit label="Steckdose Fenster Wohnen"
+            Default item=Shelly2WohnSteckdFenstGarten label="Steckdose Fenster Essen"
+        }
+
+        Text label="Bewegungsmelder" icon="motion" {
+            Default item=Shelly3HaustuerBewegung label="Haustür Bewegungsmelder"
+                
+        }
+
+        Text label="Licht" icon="light" {
+            Default item=PowerBasic6397 label="Haustür Licht" icon="light"
+            Default item=Shelly250Terrasse label="Licht Terrasse" icon="light"
+            Default item=Shelly250Terrasse_impuls label="Licht Weg Timer" icon="light"
+            
+        }
+    }
+    Frame label="Einstellungen"{
+         Group item=Licht {
+            Default item=Haustuer_licht_bewegung_auto
+            Default item=Haustuer_licht_abend_auto
+            Default item=Haustuer_licht_morgen_auto
+            Default item=Steckdosen_ein_astro label="Steckdosen Ein Astro"
+            Default item=Steckdose_wohnen_auto label="Automatik Steckdose Wohnen"
+            Default item=Steckdose_essen_auto label="Automatik Steckdose Essen"
+            
+        }
+        Group item=Rolladen{
+        Frame label="Vorwahl auf"{
+          Default item=Roller_auto_kueche_auf 
+          Default item=Roller_auto_wohn1_auf
+          Default item=Roller_auto_wohn2_auf
+          Default item=Roller_auto_essen1_auf
+          Default item=Roller_auto_essen2_auf
+          Default item=Roller_auto_kind1_auf
+          Default item=Roller_auto_kind2_auf
+          Default item=Roller_auto_bad1_auf
+          Default item=Roller_auto_bad2_auf
+          Default item=Roller_auto_schlaf_auf
+          Default item=Roller_auto_flur_auf  
+        }
+        Frame label="Vorwahl ab"{
+            Default item=Roller_auto_kueche_ab
+            Default item=Roller_auto_wohn1_ab
+            Default item=Roller_auto_wohn2_ab
+            Default item=Roller_auto_essen1_ab
+            Default item=Roller_auto_essen2_ab
+            Default item=Roller_auto_kind1_ab
+            Default item=Roller_auto_kind2_ab
+            Default item=Roller_auto_bad1_ab
+            Default item=Roller_auto_bad2_ab
+            Default item=Roller_auto_schlaf_ab
+            Default item=Roller_auto_flur_ab
+        }
+        Frame label="Vorwahl Modus"{
+            Default item=Roller_auto_auf_zeit
+            Default item=Roller_auto_ab_zeit
+            Default item=Roller_auto_auf_astro label="Automatik Rolladen auf nach Astro"
+            Default item=Roller_auto_ab_astro label="Automatik Rolladen ab nach Astro"
+        }
+        }
+        Group item=Test{
+        Frame label="Test"{
+            Default item=Testschalter
+        }
+        }
+        
+    }
+    Frame label="Heizung"{
+        Group item=Heizung
+    }
+
+}

@@ -1,0 +1,276 @@
+// Bridge mqtt -----------------------------------------
+Bridge mqtt:broker:mosquitto  "Mosquitto MQTT Broker" @ "MQTT" [ host="127.0.0.1", secure=false , username="shelly", password="dk1mg",clientID="openhab24"]
+{
+// ------------ Tasmota
+// ------------ Wemos Oeltank
+Thing topic wemos_oeltank "Oeltankmessung" {
+Type number : oeltank_abstandsmessung "Abstand Sensor und Oel " [ stateTopic="tele/tasmota_oltank_74FE53/SENSOR",transformationPattern="JSONPATH:$.SR04.Distance"]
+}
+// ------------ Stromzaehler
+Thing topic tasmota_stromzaehler "Keller Stromzaehler" @ "MQTT" {
+Type number : total_in "Total"            [ stateTopic="tele/Stromzaehler_752840/SENSOR", transformationPattern="JSONPATH:$.SML.Total_in"]
+Type number : Power_curr "Aktueller Verbrauch"            [ stateTopic="tele/Stromzaehler_752840/SENSOR", transformationPattern="JSONPATH:$.SML.Power_curr"]
+Type string : Zaehlernr "Zählernummer" [ stateTopic="tele/Stromzaehler_752840/SENSOR",transformationPattern="JSONPATH:$.SML.Meter_number"]
+}
+// ------------ Shellys
+// ------------Switch Wohn Steckdose Fenster Seite
+Thing topic Shelly1_1 "Steckdose Wohn Fester Seite " {
+Type switch : Shelly1-wohn-steckd-fenst-seit "Steckdose Wohn Fenster Seite" [ stateTopic="shellies/shelly1-553F94/relay/0", on="on", off="off" ,commandTopic="shellies/shelly1-553F94/relay/0/command" , on="on" , off="off"]
+}
+
+// ------------Switch Wohn Steckdose Fenster garten
+Thing topic Shelly1_2 "Steckdose Wohn Fester Garten " {
+Type switch : Shelly2-wohn-steckd-fenst-garten "Steckdose Wohn Fenster Garten" [ stateTopic="shellies/shelly1-2C030D/relay/0", on="on", off="off" ,commandTopic="shellies/shelly1-2C030D/relay/0/command" , on="on" , off="off"]
+}
+
+// ------------Switch Haustuer Bewegungsmelder
+Thing topic Shelly1_3 "Haustuer Bewegungsmelder" {
+Type switch : Shelly3-haustuer-bewegung "Haustuer Bewegungsmelder" [ stateTopic="shellies/shelly1-5555EC/relay/0", on="on", off="off" ,commandTopic="shellies/shelly1-5555EC/relay/0/command" , on="on" , off="off"]
+}
+
+// ------------Switch Energiesteckdose Küche
+Thing topic Shelly_plus_s_tablett "Steckdose Tablett" {
+   Type number : Shelly_plug_s_tablett_leistung_aktuell "Leistung Trockner aktuell [%.0f W]" [stateTopic="shellies/shellyplug-s-Tablett/relay/0/power"]
+   Type number : Shelly_plug_s_tablett_leistung_gesammt "Leistung Trockner gesammt [%.0f Ws]" [stateTopic="shellies/shellyplug-s-Tablett/relay/0/energy", transformationPattern="JS:shelly_convertkwh.js"]
+   Type switch : Shelly_plug_s_tablett_relais "Relais " [stateTopic="shellies/shellyplug-s-Tablett/relay/0", on="on", off="off",commandTopic="shellies/shellyplug-s-Tablett/relay/0/command" ,on="on",off="off" ]
+   Type number : Shelly_plug_s_tablett_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyplug-s-Tablett/temperature"]
+   Type string : Shelly_plug_s_tablett_online "Online" [stateTopic="shellies/shellyplug-s-Tablett/online"]
+   Type string : Shelly_plug_s_tablett_announce "Info" [stateTopic="shellies/shellyplug-s-Tablett/announce"]
+   
+}
+
+// ------------Switch Energiesteckdose Waschmaschine
+
+Thing topic Shelly_plus_s_waschmaschine "Steckdose Waschmaschine" {
+   Type number : Shelly_plug_s_waschmaschine_leistung_aktuell "Leistung Waschmaschine aktuell [%.0f W]"  [stateTopic="shellies/shellyplug-s-waschmaschine/relay/0/power"]
+   Type number : Shelly_plug_s_waschmaschine_leistung_gesammt "Leistung Waschmaschine gesammt [%.0f Ws]" [stateTopic="shellies/shellyplug-s-waschmaschine/relay/0/energy", transformationPattern="JS:shelly_convertkwh.js"]
+   Type switch : Shelly_plug_s_waschmaschine_relais "Relais " [stateTopic="shellies/shellyplug-s-waschmaschine/relay/0", on="on", off="off",commandTopic="shellies/shellyplug-s-waschmaschine/relay/0/command" ,on="on",off="off" ]
+   Type number : Shelly_plug_s_waschmaschine_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyplug-s-waschmaschine/temperature"]
+   Type string : Shelly_plug_s_waschmaschine_online "Online" [stateTopic="shellies/shellyplug-s-waschmaschine/online"]
+   Type string : Shelly_plug_s_waschmaschine_announce "Info" [stateTopic="shellies/shellyplug-s-waschmaschine/announce"]
+   
+}
+
+
+// ----------- Shelly Plug-s
+Thing topic Shelly_plus_s_trockner "Steckdose Trockner" {
+   Type number : Shelly_plug_s_trockner_leistung_aktuell "Leistung Trockner aktuell [%.0f W]" [stateTopic="shellies/shellyplug-s-Trockner/relay/0/power"]
+   Type number : Shelly_plug_s_trockner_leistung_gesammt "Leistung Trockner gesammt [%.0f Ws]" [stateTopic="shellies/shellyplug-s-Trockner/relay/0/energy", transformationPattern="JS:shelly_convertkwh.js"]
+   Type switch : Shelly_plug_s_trockner_relais "Relais " [stateTopic="shellies/shellyplug-s-Trockner/relay/0", on="on", off="off",commandTopic="shellies/shellyplug-s-Trockner/relay/0/command" ,on="on",off="off" ]
+   Type number : Shelly_plug_s_trockner_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyplug-s-Trockner/temperature"]
+   Type string : Shelly_plug_s_trockner_online "Online" [stateTopic="shellies/shellyplug-s-Trockner/online"]
+   Type string : Shelly_plug_s_trockner_announce "Info" [stateTopic="shellies/shellyplug-s-Trockner/announce"]
+   
+}
+
+ 
+
+// ------------Doppel Switch Terrasse
+Thing topic Shelly25_Terrasse "Doppel Switch Terrasse" {
+   Type switch : Shelly25_0_Terrasse "Licht 1 Terrasse" [ stateTopic="shellies/shellyswitch25-E098068CED0A/relay/0", on="on", off="off" ,commandTopic="shellies/shellyswitch25-E098068CED0A/relay/0/command" , on="on" , off="off"]
+   Type switch : Shelly25_1_Terrasse "Licht 2 Terrasse" [ stateTopic="shellies/shellyswitch25-E098068CED0A/relay/1", on="on", off="off" ,commandTopic="shellies/shellyswitch25-E098068CED0A/relay/1/command" , on="on" , off="off"]
+   Type number : Shelly25_Terrasse_power0 "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-E098068CED0A/relay/0/power"]
+   Type number : Shelly25_Terrasse_power1 "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-E098068CED0A/relay/1/power"]
+   Type number : Shelly25TerrasseTemp "Tenp [%.1f C]" [stateTopic="shellies/shellyswitch25-E098068CED0A/temperature"]
+}
+
+// ------------ Doppel Switch Einfahrt
+Thing topic Shelly25_einfahrt "Doppel Switch Einfahrt"{
+   Type  switch : Shelly25_0_einfahrt "Licht Einfahrt" [ stateTopic="shellies/shellyswitch25-730C3C/relay/0", on="on", off="off" ,commandTopic="shellies/shellyswitch25-730C3C/relay/0/command" , on="on" , off="off"]
+   Type  switch : Shelly25_1_einfahrt "Bewegungsmelder" [ stateTopic="shellies/shellyswitch25-730C3C/relay/1", on="on", off="off" ,commandTopic="shellies/shellyswitch25-730C3C/relay/0/command" , on="on" , off="off"]
+   Type  number : Shelly25_einfahrt_power0 "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-730C3C/relay/0/power"]
+   Type  number : Shelly25_einfahrt_power1 "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-730C3C/relay/0/power"]
+   Type  number : Shelly25_einfart_temp "Tenp [%.1f C]" [stateTopic="shellies/shellyswitch25-730C3C/temperature"]
+   Type  number : Shelly25_0_einfahrt_input "Eingang Schalter 1" [ stateTopic="shellies/shellyswitch25-730C3C/input/0"]
+   Type  number : Shelly25_1_einfahrt_input "Eingang Schalter 2" [ stateTopic="shellies/shellyswitch25-730C3C/input/1"]
+
+}
+
+// ---------- Shelly Blub
+
+Thing topic Shelly_Blub1 "Lampe1 Bad"  {
+	Channels: 
+		Type string : shellyblub1power "Switch" [ stateTopic="shellies/shellybulb-3CC260/color/0" , commandTopic="shellies/shellybulb-3CC260/color/0/command"]
+		Type string : shellyblub1status "Status" [ stateTopic="shellies/shellybulb-3CC260/color/0/status", commandTopic="shellies/shellybulb-3CC260/color/0/set"]
+      Type string : shellyblub1ison      "IsOn"                  [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.ison"]
+      Type string : shellyblub1mode      "Mode"                  [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.mode"]
+      Type number : shellyblub1gain      "Gain"                  [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.gain"]
+      Type number : shellyblub1red       "Red"                   [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.red"]
+      Type number : shellyblub1green     "Green"                 [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.green"]
+      Type number : shellyblub1blue      "Blue"                  [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.blue"]
+      Type number : shellyblub1white     "White"                 [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.white"]
+      Type number : shellyblub1effect    "Effect"                [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.effect"]
+      Type number : shellyblub1temp     "Temp"                   [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.temp"]
+      Type number : shellyblub1brightness "Brightness"           [ stateTopic="shellies/shellybulb-3CC260/color/0/status", transformationPattern="JSONPATH:$.brightness"]
+      Type string : shellyblub1cmd       "Command"               [ commandTopic="shellies/shellybulb-3CC260/color/0/set" ]
+    
+   }
+
+Thing topic Shelly_Blub2 "Lampe2 Bad"  {
+	Channels: 
+		Type string : shellyblub2power "Switch" [ stateTopic="shellies/shellybulb-4210B2/color/0" , commandTopic="shellies/shellybulb-4210B2/color/0/command"]
+		Type string : shellyblub2status "Status" [ stateTopic="shellies/shellybulb-4210B2/color/0/status", commandTopic="shellies/shellybulb-4210B2/color/0/set"]
+      Type string : shellyblub2ison      "IsOn"                  [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.ison"]
+      Type string : shellyblub2mode      "Mode"                  [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.mode"]
+      Type number : shellyblub2gain      "Gain"                  [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.gain"]
+      Type number : shellyblub2red       "Red"                   [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.red"]
+      Type number : shellyblub2green     "Green"                 [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.green"]
+      Type number : shellyblub2blue      "Blue"                  [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.blue"]
+      Type number : shellyblub2white     "White"                 [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.white"]
+      Type number : shellyblub2effect    "Effect"                [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.effect"]
+      Type number : shellyblub2temp     "Temp"                   [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.temp"]
+      Type number : shellyblub2brightness "Brightness"           [ stateTopic="shellies/shellybulb-4210B2/color/0/status", transformationPattern="JSONPATH:$.brightness"]
+      Type string : shellyblub2cmd       "Command"               [ commandTopic="shellies/shellybulb-4210B2/color/0/set" ]
+    
+   }
+
+   Thing topic Shelly_RGB "LED Band Schlafen"  {
+	Channels: 
+		Type string : shellyrgbpower "Switch" [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0" , commandTopic="shellies/shellyrgbw2-B0E0C7/color/0/command"]
+		Type string : shellyrgbstatus "Status" [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", commandTopic="shellies/shellyrgbw2-B0E0C7/color/0/set"]
+      Type string : shellyrgbison      "IsOn"                  [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.ison"]
+      Type string : shellyrgbmode      "Mode"                  [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.mode"]
+      Type number : shellyrgbgain      "Gain"                  [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.gain"]
+      Type number : shellyrgbred       "Red"                   [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.red"]
+      Type number : shellyrgbgreen     "Green"                 [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.green"]
+      Type number : shellyrgbblue      "Blue"                  [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.blue"]
+      Type number : shellyrgbwpower    "Power [%.0f W]"        [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.power"]
+      Type string : shellyrgboverpower "Over Power"            [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.overpower"]
+      Type number : shellyrgbeffect    "Effect"                [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.effect"]
+      Type number : shellyrgbwhite     "White"                 [ stateTopic="shellies/shellyrgbw2-B0E0C7/color/0/status", transformationPattern="JSONPATH:$.white"]
+    
+   }
+
+// ---------- Shelly Rolladen Tür Esszimmer Garten
+
+Thing topic Shelly_Essen_Tuer_Rolladen "Roller Essen Tür Garten"  {
+	Channels: 
+ Type rollershutter : Shelly_Essen_Tuer_Roll "Rolladen Essen Tuer" [stateTopic="shellies/shellyswitch25-735C20/roller/0/pos",commandTopic="shellies/shellyswitch25-735C20/roller/0/command/pos" ]
+   Type number : Shelly_Essen_Tuer_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-735C20/roller/0/power"]
+   Type number : Shelly_Essen_Tuer_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-735C20/temperature"]
+   //Type switch : Shelly_Essen_Tuer_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-735C20/overtemperature"]
+
+}
+// ---------- Shelly Rolladen fenster Esszimmer Garten
+
+Thing topic Shelly_Essen_Fenster_Rolladen "Roller Essen Fenster Garten"  {
+	Channels: 
+ Type rollershutter : Shelly_Essen_Fenster_Roll "Rolladen Essen Fenster" [stateTopic="shellies/shellyswitch25-72F419/roller/0/pos",commandTopic="shellies/shellyswitch25-72F419/roller/0/command/pos" ]
+   Type number : Shelly_Essen_Fenster_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-72F419/roller/0/power"]
+   Type number : Shelly_Essen_Fenster_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-72F419/temperature"]
+   Type number : Shelly_Essen_Fenster_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-72F419/overtemperature"]
+
+}
+
+// ---------- Shelly Rolladen Tür Wohnzimmer seite
+Thing topic Shelly_Wohn_Tuer_Rolladen "Roller Wohn Tuer"  {
+	Channels: 
+ Type rollershutter : Shelly_Wohn_Tuer_Roll "Rolladen Wohn Tuer" [stateTopic="shellies/shellyswitch25-732279/roller/0/pos",commandTopic="shellies/shellyswitch25-732279/roller/0/command/pos" ]
+   Type number : Shelly_Wohn_Tuer_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-732279/roller/0/power"]
+   Type number : Shelly_Wohn_Tuer_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-732279/temperature"]
+   Type number : Shelly_Wohn_Tuer_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-732279/overtemperature"]
+
+}
+
+
+// ---------- Shelly Rolladen fenster Wohnzimmer seite
+
+Thing topic Shelly_Wohn_Fenster_Rolladen "Roller Wohn Fenster"  {
+	Channels: 
+ Type rollershutter : Shelly_Wohn_Fenster_Roll "Rolladen Wohn Fenster" [stateTopic="shellies/shellyswitch25-6906BF/roller/0/pos",commandTopic="shellies/shellyswitch25-6906BF/roller/0/command/pos" ]
+   Type number : Shelly_Wohn_Fenster_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-6906BF/roller/0/power"]
+   Type number : Shelly_Wohn_Fenster_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-6906BF/temperature"]
+   Type number : Shelly_Wohn_Fenster_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-6906BF/overtemperature"]
+
+}
+
+// ---------- Shelly Rolladen fenster Kueche 
+Thing topic Shelly_Kueche_Rolladen"Rolladen Kueche" {
+   Channels: 
+   Type rollershutter : Shelly_Kueche "Rolladen Küche" [stateTopic="shellies/shellyswitch25-732833/roller/0/pos",commandTopic="shellies/shellyswitch25-732833/roller/0/command/pos" ]
+   Type number : ShellyKueche_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-732833/roller/0/power"]
+   Type number : ShellyKueche_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-732833/temperature"]
+   Type number : ShellyKueche_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-732833/overtemperature"]
+}
+/*
+// ---------- Shelly Rolladen fenster Schlafen 
+Thing topic Shelly_Schlafen_Rolladen"Rolladen Schlafen" {
+   Channels: 
+   Type rollershutter : Shelly_Schlafen "Rolladen Schlafen" [stateTopic="shellies/shellyswitch25-693BF2/roller/0/pos",commandTopic="shellies/shellyswitch25-693BF2/roller/0/command/pos" ]
+   Type number : ShellySchlafen_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-693BF2/roller/0/power"]
+   Type number : ShellySchlafen_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-693BF2/temperature"]
+   Type number : ShellySchlafen_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-693BF2/overtemperature"]
+}
+*/
+// ---------- Shelly Rolladen fenster Kind1
+Thing topic Shelly_Kind1_Rolladen"Rolladen Kind1" {
+   Channels: 
+   Type rollershutter : Shelly_Kind1 "Rolladen Kind1" [stateTopic="shellies/shellyswitch25-5DAFC4/roller/0/pos",commandTopic="shellies/shellyswitch25-5DAFC4/roller/0/command/pos" ]
+   Type number : ShellyKind1_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-5DAFC4/roller/0/power"]
+   Type number : ShellyKind1_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-5DAFC4/temperature"]
+   Type number : ShellyKind1_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-5DAFC4/overtemperature"]
+}
+
+// ---------- Shelly Rolladen fenster Kind2
+Thing topic Shelly_Kind2_Rolladen"Rolladen Kind2" {
+   Channels: 
+   Type rollershutter : Shelly_Kind2 "Rolladen Kind2" [stateTopic="shellies/shellyswitch25-5DB48B/roller/0/pos",commandTopic="shellies/shellyswitch25-5DB48B/roller/0/command/pos" ]
+   Type number : ShellyKind2_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-5DB48B/roller/0/power"]
+   Type number : ShellyKind2_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-5DB48B/temperature"]
+   Type number : ShellyKind2_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-5DB48B/overtemperature"]
+}
+
+// ---------- Shelly Rolladen fenster Bad links
+Thing topic Shelly_Bad_links_Rolladen"Rolladen Bad links" {
+   Channels: 
+   Type rollershutter : Shelly_BadL "Rolladen Bad links" [stateTopic="shellies/shellyswitch25-745BFE/roller/0/pos",commandTopic="shellies/shellyswitch25-745BFE/roller/0/command/pos" ]
+   Type number : ShellyBadL_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-745BFE/roller/0/power"]
+   Type number : ShellyBadL_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-745BFE/temperature"]
+   Type number : ShellyBadL_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-745BFE/overtemperature"]
+}
+
+// ---------- Shelly Rolladen fenster Bad rechts
+Thing topic Shelly_Bad_rechts_Rolladen"Rolladen Bad rechts" {
+   Channels: 
+   Type rollershutter : Shelly_BadR "Rolladen Bad rechts" [stateTopic="shellies/shellyswitch25-7360DA/roller/0/pos",commandTopic="shellies/shellyswitch25-7360DA/roller/0/command/pos" ]
+   Type number : ShellyBadR_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-7360DA/roller/0/power"]
+   Type number : ShellyBadR_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-7360DA/temperature"]
+   Type number : ShellyBadR_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-7360DA/overtemperature"]
+}
+
+// ---------- Shelly Rolladen fenster Flur
+Thing topic Shelly_Flur_Rolladen"Rolladen Flur" {
+   Channels: 
+   Type rollershutter : Shelly_Flur "Rolladen Flur" [stateTopic="shellies/shellyswitch25-73C9B0/roller/0/pos",commandTopic="shellies/shellyswitch25-73C9B0/roller/0/command/pos" ]
+   Type number : ShellyFlur_power "Leistung aktuell [%.0f W]" [stateTopic="shellies/shellyswitch25-73C9B0/roller/0/power"]
+   Type number : ShellyFlur_temp "Temperatur aktuell [%.1f C]" [stateTopic="shellies/shellyswitch25-73C9B0/temperature"]
+   Type number : ShellyFlur_over_temp "Übertemperatur" [stateTopic="shellies/shellyswitch25-73C9B0/overtemperature"]
+}
+
+
+// Sonoff basic Haustuer
+Thing topic sonoff-6397 "Lampe Haustuer" {
+    Channels:
+       Type string : reachable_basic_6397 "Reachable"            [ stateTopic="tele/sonoff-haustuer-lampe/LWT" ]
+       Type switch : power_basic_6397     "Power"                [ stateTopic="stat/sonoff-haustuer-lampe/RESULT", transformationPattern="JSONPATH:$.POWER", commandTopic="cmnd/sonoff-haustuer-lampe/POWER",on="ON",off="OFF" ]
+       Type number : rssi_basic_6397      "WiFi Signal Strength" [ stateTopic="tele/sonoff-haustuer-lampe/STATE", transformationPattern="JSONPATH:$.Wifi.RSSI"]
+       Type string : uptime_basic_6397    "Uptime"               [ stateTopic="tele/sonoff-haustuer-lampe/STATE", transformationPattern="JSONPATH:$.Uptime"]
+       Type string : power_state_basic_6397 "Power state"        [ stateTopic="tele/sonoff-haustuer-lampe/STATE", transformationPattern="JSONPATH:$.POWER"]
+    }
+
+// MQTT Server
+   Thing topic mqtt-sever "MQTT Server" {
+      Channels:
+         Type string : mqtt_versiom "Softwareversion "         [ stateTopic="$SYS/broker/version"]
+         Type string : mqtt_uptime  "Uptime Mqtt "             [ stateTopic="$SYS/broker/uptime"]
+         Type number : mqtt_client_total  "Client total "      [ stateTopic="$SYS/broker/clients/total"]
+         Type number : mqtt_client_active  "Client active "    [ stateTopic="$SYS/broker/clients/active"]
+         Type number : mqtt_client_inactive  "Client inactive" [ stateTopic="$$SYS/broker/clients/inactive"]
+         Type number : mqtt_message_stored  "Message sored "   [ stateTopic="$SYS/broker/messages/stored"]
+         Type number : mqtt_message_received  "Message reseived "    [ stateTopic="$SYS/broker/messages/received"]
+         Type number : mqtt_message_send  "Message send"       [ stateTopic="$SYS/broker/messages/sent"]
+
+
+   }
+
+}

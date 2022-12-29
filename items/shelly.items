@@ -1,0 +1,181 @@
+Dimmer          ShellyRoll_all                          "Alle Rolläden"                                                 [ "Lighting" ]      
+
+// Steckdose Wohn Fenster Seite
+Switch          Shelly1WohnSteckdFenstSeit              "Steckdose Wohn Fenster Seite"                                  [ "Switchable" ]    {channel="mqtt:topic:mosquitto:Shelly1_1:Shelly1-wohn-steckd-fenst-seit"}
+
+// Steckdose Wohn Fenster Garten
+Switch          Shelly2WohnSteckdFenstGarten            "Steckdose Essen Fenster Garten"                                [ "Switchable" ]    {channel="mqtt:topic:mosquitto:Shelly1_2:Shelly2-wohn-steckd-fenst-garten"}
+
+// Haustuer Bewegungsmelder
+Switch          Shelly3HaustuerBewegung                 "Haustuer bewegungsmelder"                                                          {channel="mqtt:topic:mosquitto:Shelly1_3:Shelly3-haustuer-bewegung"}
+
+// Terrasse Licht
+Switch          Shelly250Terrasse                       "Licht 1 Terrasse"                                              [ "Switchable" ]    {channel="mqtt:topic:mosquitto:Shelly25_Terrasse:Shelly25_0_Terrasse"}
+Switch          Shelly251Terrasse                       "Licht 2 Terrasse"                                                                  {channel="mqtt:topic:mosquitto:Shelly25_Terrasse:Shelly25_1_Terrasse"}
+Number          Shelly25TerrasseTemp                    "Tenp [%.1f c]"                                                                     {channel="mqtt:topic:mosquitto:Shelly25_Terrasse:Shelly25TerrasseTemp"}
+Number          Shelly25TerrassePower0                  "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly25_Terrasse:Shelly25_Terrasse_power0"}
+Number          Shelly25TerrassePower1                  "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly25_Terrasse:Shelly25_Terrasse_power1"}
+Switch          Shelly250Terrasse_impuls                "Timer Starten Beleuchtung Weg"                                 [ "Switchable" ]    
+
+// Einfahrt Licht / Bewegungsmelder
+Switch          Shelly250Einfahrt                       "Licht einfahrt"                                                [ "Switchable" ]    {channel="mqtt:topic:mosquitto:Shelly25_einfahrt:Shelly25_0_einfahrt"}
+Number          Shelly251EinfahrtInput                  "Eingang schalter 2"                                                                {channel="mqtt:topic:mosquitto:Shelly25_einfahrt:Shelly25_1_einfahrt_input"}
+Number          Shelly25EinfahrtPower0                  "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly25_einfahrt:Shelly25_einfahrt_power0"}
+Number          Shelly25EinfartTemp                     "Tenp [%.1f c]"                                                                     {channel="mqtt:topic:mosquitto:Shelly25_einfahrt:Shelly25_einfart_temp"}
+
+// Rolladen Essen Fenster Garten
+Rollershutter   ShellyEssenFensterRoll                  "Rolladen Esszimmer fenster"                (Home,GF,Rolladen)  [ "Lighting" ]      {channel="mqtt:topic:mosquitto:Shelly_Essen_Fenster_Rolladen:Shelly_Essen_Fenster_Roll"}
+Number          ShellyEssenFensterPower                 "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Essen_Fenster_Rolladen:Shelly_Essen_Fenster_power"}
+Number          ShellyEssenFensterTemp                  "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Essen_Fenster_Rolladen:Shelly_Essen_Fenster_temp"}
+Number          ShellyEssenFensterOverTemp              "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Essen_Fenster_Rolladen:Shelly_Essen_Fenster_over_temp"}
+
+// Rolladen Essen Tuer Garten
+Rollershutter   ShellyEssenTuerRoll                     "Rolladen Esszimmer Tür"                    (Home,GF,Rolladen)  [ "Lighting" ]      {channel="mqtt:topic:mosquitto:Shelly_Essen_Tuer_Rolladen:Shelly_Essen_Tuer_Roll"}
+Number          ShellyEssenTuerPower                    "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Essen_Tuer_Rolladen:Shelly_Essen_Tuer_power"}
+Number          ShellyEssenTuerTemp                     "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Essen_Tuer_Rolladen:Shelly_Essen_Tuer_temp"}
+Number          ShellyEssenTuerOverTemp                 "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Essen_Tuer_Rolladen:Shelly_Essen_Tuer_over_temp"}
+
+// Rolladen Wohn Tuer Seite
+Rollershutter   ShellyWohnTuerRoll                      "Rolladen Wohnzimmer tuer"                  (Home,GF,Rolladen)  [ "Lighting" ]      {channel="mqtt:topic:mosquitto:Shelly_Wohn_Tuer_Rolladen:Shelly_Wohn_Tuer_Roll"}
+Number          ShellyWohnTuerPower                     "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Wohn_Tuer_Rolladen:Shelly_Wohn_Tuer_power"}
+Number          ShellyWohnTuerTemp                      "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Wohn_Tuer_Rolladen:Shelly_Wohn_Tuer_temp"}
+Number          ShellyWohnTuerOverTemp                  "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Wohn_Tuer_Rolladen:Shelly_Wohn_Tuer_over_temp"}
+
+// Rolladen wohn Fenster seite
+Rollershutter   ShellyWohnFensterRoll                   "Rolladen Wohnzimer fenster"                (Home,GF,Rolladen)  [ "Lighting" ]      {channel="mqtt:topic:mosquitto:Shelly_Wohn_Fenster_Rolladen:Shelly_Wohn_Fenster_Roll"}
+Number          ShellyWohnFensterPower                  "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Wohn_Fenster_Rolladen:Shelly_Wohn_Fenster_power"}
+Number          ShellyWohnFensterTemp                   "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Wohn_Fenster_Rolladen:Shelly_Wohn_Fenster_temp"}
+Number          ShellyWohnFensterOverTemp               "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Wohn_Fenster_Rolladen:Shelly_Wohn_Fenster_over_temp"}
+
+// Rolladen kueche 
+Rollershutter   ShellyKueche                            "Rolladen Küche"                            (Home,GF,Rolladen)  [ "Lighting" ]      {channel="mqtt:topic:mosquitto:Shelly_Kueche_Rolladen:Shelly_Kueche"}
+Number          ShellyKuechePower                       "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Kueche_Rolladen:ShellyKueche_power"}
+Number          ShellyKuecheTemp                        "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Kueche_Rolladen:ShellyKueche_temp"}
+Number          ShellyKuecheOverTemp                    "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Kueche_Rolladen:ShellyKueche_over_temp"}
+
+// Rolladen Kind 1
+Rollershutter   ShellyKind1                             "Rolladen Kind1"                            (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Kind1_Rolladen:Shelly_Kind1"}
+Number          ShellyKind1Power                        "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Kind1_Rolladen:ShellyKind1_power"}
+Number          ShellyKind1Temp                         "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Kind1_Rolladen:ShellyKind1_temp"}
+Number          ShellyKind1OverTemp                     "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Kind1_Rolladen:ShellyKind1_over_temp"}
+
+// Rolladen Kind 2
+Rollershutter   ShellyKind2                             "Rolladen Kind2"                            (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Kind2_Rolladen:Shelly_Kind2"}
+Number          ShellyKind2Power                        "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Kind2_Rolladen:ShellyKind2_power"}
+Number          ShellyKind2Temp                         "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Kind2_Rolladen:ShellyKind2_temp"}
+Number          ShellyKind2OverTemp                     "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Kind2_Rolladen:ShellyKind2_over_temp"}
+
+// Rolladen Schlafen
+Rollershutter   ShellySchlafen                          "Rolladen Schlafzimmer"                     (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Schlafen_Rolladen:Shelly_Schlafen"}
+Number          ShellySchlafenPower                     "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Schlafen_Rolladen:ShellySchlafen_power"}
+Number          ShellySchlafenTemp                      "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Schlafen_Rolladen:ShellySchlafen_temp"}
+Number          ShellySchlafenOverTemp                  "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Schlafen_Rolladen:ShellySchlafen_over_temp"}
+
+// Rolladen Bad
+Rollershutter   ShellyBadL                              "Rolladen Bad links"                        (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Bad_links_Rolladen:Shelly_BadL"}
+Number          ShellyBadLPower                         "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Bad_links_Rolladen:ShellyBadL_power"}
+Number          ShellyBadLTemp                          "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Bad_links_Rolladen:ShellyBadL_temp"}
+Number          ShellyBadLOverTemp                      "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Bad_links_Rolladen:ShellyBadL_over_temp"}
+
+Rollershutter   ShellyBadR                              "Rolladen Bad rechts"                       (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Bad_rechts_Rolladen:Shelly_BadR"}
+Number          ShellyBadRPower                         "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Bad_rechts_Rolladen:ShellyBadR_power"}
+Number          ShellyBadRTemp                          "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Bad_rechts_Rolladen:ShellyBadR_temp"}
+Number          ShellyBadROverTemp                      "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Bad_rechts_Rolladen:ShellyBadR_over_temp"}
+
+// Rolladen Flur
+Rollershutter   ShellyFlur                              "Rolladen Flur"                             (Home,GF,Rolladen)                      {channel="mqtt:topic:mosquitto:Shelly_Flur_Rolladen:Shelly_Flur"}
+Number          ShellyFlurPower                         "Leistung aktuell [%.0f w]"                                                         {channel="mqtt:topic:mosquitto:Shelly_Flur_Rolladen:ShellyFlur_power"}
+Number          ShellyFlurTemp                          "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_Flur_Rolladen:ShellyFlur_temp"}
+Number          ShellyFlurOverTemp                      "Übertemperatur"                                                                    {channel="mqtt:topic:mosquitto:Shelly_Flur_Rolladen:ShellyFlur_over_temp"}
+
+// ----
+
+Switch          Shelly_blub_power                       "Bad"                                                                               
+Number          Shelly_blub_slider                      "Helligkeit"                                                                        
+Number          Shelly_blub_slider_temp                 "Farbtemperatur"                                                                    
+Color           Shelly_blub_picker                      "Picker"                                                                            
+Switch          Shelly_blub_color_white                 "Farbe / Weiss"                                                                     
+Number          Shelly_blub_effects                     "Effects"                                                                           
+
+
+// Lampe1 Bad
+String          Shellyblub1Power                        "Switch"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1power"}
+String          Shellyblub1Status                       "Status"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1status"}
+String          Shellyblub1Ison                         "Is on"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1ison"}
+String          Shellyblub1Mode                         "Mode"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1mode"}
+Number          Shellyblub1Gain                         "Gain"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1gain"}
+Number          Shellyblub1Red                          "Red"                                                                               {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1red"}
+Number          Shellyblub1Green                        "Green"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1green"}
+Number          Shellyblub1Blue                         "Blue"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1blue"}
+Number          Shellyblub1White                        "White"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1white"}
+Number          Shellyblub1Effect                       "Effect"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1effect"}
+Number          Shellyblub1Temp                         "Temp"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1temp"}
+Number          Shellyblub1Brightness                   "Brightness"                                                                        {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1brightness"}
+String          Shellyblub1Cmd                          "Command"                                                                           {channel="mqtt:topic:mosquitto:Shelly_Blub1:shellyblub1cmd"}
+
+// Lampe2 Bad
+String          Shellyblub2Power                        "Switch"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2power"}
+String          Shellyblub2Status                       "Status"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2status"}
+String          Shellyblub2Ison                         "Is on"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2ison"}
+String          Shellyblub2Mode                         "Mode"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2mode"}
+Number          Shellyblub2Gain                         "Gain"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2gain"}
+Number          Shellyblub2Red                          "Red"                                                                               {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2red"}
+Number          Shellyblub2Green                        "Green"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2green"}
+Number          Shellyblub2Blue                         "Blue"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2blue"}
+Number          Shellyblub2White                        "White"                                                                             {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2white"}
+Number          Shellyblub2Effect                       "Effect"                                                                            {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2effect"}
+Number          Shellyblub2Temp                         "Temp"                                                                              {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2temp"}
+Number          Shellyblub2Brightness                   "Brightness"                                                                        {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2brightness"}
+String          Shellyblub2Cmd                          "Command"                                                                           {channel="mqtt:topic:mosquitto:Shelly_Blub2:shellyblub2cmd"}
+
+// LED Band Schlafen
+Switch          Shelly_led_power                        "Schlafen"                                                                          
+Number          Shelly_led_slider                       "Helligkeit"                                                                        
+Number          Shelly_led_slider_temp                  "Farbtemperatur"                                                                    
+Color           Shelly_led_picker                       "Picker"                                                                            
+Switch          Shelly_led_color_white                  "Farbe / Weiss"                                                                     
+Number          Shelly_led_effects                      "Effects"                                                                           
+
+String          Shellyrgbpower                          "Switch"                                                                            {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbpower"}
+String          Shellyrgbstatus                         "Status"                                                                            {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbstatus"}
+String          Shellyrgbison                           "Is on"                                                                             {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbison"}
+String          Shellyrgbmode                           "Mode"                                                                              {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbmode"}
+Number          Shellyrgbgain                           "Gain"                                                                              {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbgain"}
+Number          Shellyrgbred                            "Red"                                                                               {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbred"}
+Number          Shellyrgbgreen                          "Green"                                                                             {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbgreen"}
+Number          Shellyrgbblue                           "Blue"                                                                              {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbblue"}
+Number          Shellyrgbeffect                         "Effect"                                                                            {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbeffect"}
+Number          Shellyrgbwhite                          "White"                                                                             {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbwhite"}
+Number          Shellyrgbbrightness                     "Brightness"                                                                        {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbbrightness"}
+Number          Shellyrgbwpower                         "Power"                                                                             {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgbwpower"}
+String          Shellyrgboverpower                      "Over power"                                                                        {channel="mqtt:topic:mosquitto:Shelly_RGB:shellyrgboverpower"}
+
+//----- Trockner
+Number          ShellyPlugSTrocknerLeistungAktuell      "Leistung trockner aktuell [%.0f w]"        (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_leistung_aktuell"}
+Number          ShellyPlugSTrocknerLeistungGesammt      "Leistung trockner gesammt [%.0f ws]"       (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_leistung_gesammt"}
+Switch          ShellyPlugSTrocknerRelais               "Relais"                                    (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_relais"}
+Number          ShellyPlugSTrocknerTemp                 "Temperatur aktuell [%.1f c]"               (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_temp"}
+String          ShellyPlugSTrocknerOnline               "Online"                                    (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_online"}
+String          ShellyPlugSTrocknerAnnounce             "Info"                                      (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_trockner:Shelly_plug_s_trockner_announce"}
+String          Trockner_Status                         "Status Trockner"                           (C_LaundryRoom )                        
+Number          Trockner_laeuft                                                                     (C_LaundryRoom )                        
+Number          Trockner_auflockern                                                                 (C_LaundryRoom )                        
+
+//----- Waschmaschine
+Number          ShellyPlugSWaschmaschineLeistungAktuell "Leistung waschmaschine aktuell [%.0f w]"   (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_leistung_aktuell"}
+Number          ShellyPlugSWaschmaschineLeistungGesammt "Leistung waschmaschine gesammt [%.0f ws]"  (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_leistung_gesammt"}
+Switch          ShellyPlugSWaschmaschineRelais          "Relais"                                    (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_relais"}
+Number          ShellyPlugSWaschmaschineTemp            "Temperatur aktuell [%.1f c]"               (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_temp"}
+String          ShellyPlugSWaschmaschineOnline          "Online"                                    (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_online"}
+String          ShellyPlugSWaschmaschineAnnounce        "Info"                                      (C_LaundryRoom )                        {channel="mqtt:topic:mosquitto:Shelly_plus_s_waschmaschine:Shelly_plug_s_waschmaschine_announce"}
+Number          Waschmaschine_laeuft                                                                                                        
+String          Waschmaschine_Status                    "Status Waschmaschine"                      (C_LaundryRoom )                        
+
+//------- Tablett Kueche
+Number          ShellyPlugSTablettLeistungAktuell       "Leistung trockner aktuell [%.0f w]"                                                {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_leistung_aktuell"}
+Number          ShellyPlugSTablettLeistungGesammt       "Leistung trockner gesammt [%.0f ws]"                                               {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_leistung_gesammt"}
+Switch          ShellyPlugSTablettRelais                "Relais"                                                                            {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_relais"}
+Number          ShellyPlugSTablettTemp                  "Temperatur aktuell [%.1f c]"                                                       {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_temp"}
+String          ShellyPlugSTablettOnline                "Online"                                                                            {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_online"}
+String          ShellyPlugSTablettAnnounce              "Info"                                                                              {channel="mqtt:topic:mosquitto:Shelly_plus_s_tablett:Shelly_plug_s_tablett_announce"}
+

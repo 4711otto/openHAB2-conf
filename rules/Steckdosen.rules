@@ -1,0 +1,31 @@
+
+rule "React on Steckdosen Ein Astro (Steckdosen_ein_astro) change/update"
+when
+    Item Sunset_nacht_impuls changed to ON // your condition here
+then
+    if (Steckdosen_essen_ein_astro.state == ON){
+        if (Steckdose_essen_auto.state == ON){
+            Shelly2WohnSteckdFenstGarten.sendCommand(ON)
+            logInfo ("Regel Steckdose Essen Abend" , "ein" ) 
+        }
+        if (Steckdosen_wohnen_ein_astro.state == ON){
+            Shelly1WohnSteckdFenstSeit.sendCommand(ON)
+            logInfo ("Regel Steckdose Wohnen Abend" , "ein" ) 
+        }
+    } 
+end
+
+
+  rule "Licht Steckdosen aus cron" 
+ when //jeden Abend um 23.00 Uhr
+ Time cron "0 0 23 * * ?" 
+ then 
+ if (Steckdose_essen_auto.state == ON ){
+	Shelly2WohnSteckdFenstGarten.sendCommand(OFF) 
+	logInfo ("Regel Steckdose Essen 23:00" , "aus" ) 
+ } 
+  if (Steckdose_wohnen_auto.state == ON ){
+	Shelly1WohnSteckdFenstSeit.sendCommand(OFF) 
+	logInfo ("Regel Steckdose Wohnen 23:00" , "aus" ) 
+ } 
+ end 

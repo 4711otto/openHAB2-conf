@@ -1,0 +1,34 @@
+Group   Home            "Michael und Angela"    <house>                         ["Building"]        
+
+Group   GF              "Erdgeschoss"           <groundfloor>       (Home)      ["GroundFloor"]     
+Group   C               "Keller"                <cellar>            (Home)      ["Basement"]        
+Group   OU              "Draußen"               <garden>            (Home)      ["Outdoor"]         
+
+Group   GF_Wardrobe     "Garderobe"             <wardrobe>          (Home, GF)                      
+Group   GF_Hallway      "Flur"                  <corridor>          (Home, GF)  ["Corridor"]        
+Group   GF_Kitchen      "Küche"                 <kitchen>           (Home, GF)  ["Kitchen"]         
+Group   GF_Dining       "Esszimmer"             <sofa>              (Home, GF)  ["LivingRoom"]      
+Group   GF_Living       "Wohnzimmer"            <cinema>            (Home, GF)                      
+Group   GF_KidsRoom     "Kinderzimmer"          <girl_3>            (Home, GF)  ["Room"]            
+Group   GF_Bathroom     "Badezimmer"            <bath>              (Home, GF)  ["Bathroom"]        
+Group   GF_Bedroom      "Schlafzimmer"          <bedroom>           (Home, GF)  ["Bedroom"]         
+Group   C_Boiler        "Heizungsraum"          <gas>               (Home, C)   ["Room"]            
+Group   C_LaundryRoom   "Waschküche"            <washingmachine>    (Home, C)   ["Room"]            
+Group   C_StorageRoom   "Lagerraum"             <suitcase>          (Home, C)   ["Room"]            
+Group   C_Toilet        "Toilette"              <toilet>            (Home, C)   ["Bathroom"]        
+Group   OU_FrontYard    "Vorgarten"             <lawnmower>         (Home, OU)  ["Garden"]          
+Group   OU_Entryway     "Zufahrt"               <frontdoor>         (Home, OU)  ["Room"]            
+Group   OU_Outside      "Draußen"               <garden>            (Home, OU)  ["Outside"]         
+Group   OU_Terrace      "Terrasse"              <terrace>           (Home, OU)  ["Terrace"]         
+Group   OU_Garage       "Garage"                <garage>            (Home, OU)  ["Garage"]          
+Group   OU_Shed         "Schuppen"              <greenhouse>        (Home, OU)  ["Garage"]          
+Group   OU_Driveway     "Auffahrt"                                  (Home, OU)  ["Outdoor"]         
+Group   OU_Backyard     "Hinterhof"             <lawnmower>         (Home, OU)  ["Garden"]          
+Group   Setup           "Setup"                 <setings>           (Home)      ["Einstellungen"]   
+Group   Licht           "Licht"                 <light>             (Home)      ["Licht"]           
+Group   Rolladen        "Rolladen"              <rollershutter>     (Home, GF)  ["Rolladen"]        
+Group   Heizung         "Heizung"               <radiator>          (Home, C)                       
+Group   Roomba          "Flafy"                                     (Home, C)                       
+Group   Astro           "Astro"                 <sun>               (Home,Astro)   
+Group   Wetter          "Wetter"                                    (Home)                      
+Group   Test            "Test"                                      (Home, Setup)

@@ -1,0 +1,10 @@
+// ------- Oeltank
+Number Oelstand
+Number OeltankAbstandsmessung "Abstand sensor und oel" {channel="mqtt:topic:mosquitto:wemos_oeltank:oeltank_abstandsmessung"}
+
+//-------- Stromzaehler
+Number Gesammtkosten_strom
+String Zaehlernr "Zählernummer" {channel="mqtt:topic:mosquitto:tasmota_stromzaehler:Zaehlernr"}
+Number TotalIn "Total" {channel="mqtt:topic:mosquitto:tasmota_stromzaehler:total_in"}
+Number PowerCurr "Aktueller verbrauch" {channel="mqtt:topic:mosquitto:tasmota_stromzaehler:Power_curr"}
+

@@ -1,0 +1,7 @@
+// Sonoff Basic Haustuer
+
+String  ReachableBasic6397  "Reachable"             [ "Switchable" ]    {channel="mqtt:topic:mosquitto:sonoff-6397:reachable_basic_6397"}
+Switch  PowerBasic6397      "Licht Haustuer"                            {channel="mqtt:topic:mosquitto:sonoff-6397:power_basic_6397"}
+Number  RssiBasic6397       "Wi fi signal strength"                     {channel="mqtt:topic:mosquitto:sonoff-6397:rssi_basic_6397"}
+String  UptimeBasic6397     "Uptime"                                    {channel="mqtt:topic:mosquitto:sonoff-6397:uptime_basic_6397"}
+String  PowerStateBasic6397 "Power state"                               {channel="mqtt:topic:mosquitto:sonoff-6397:power_state_basic_6397"}

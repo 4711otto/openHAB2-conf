@@ -1,0 +1,10 @@
+
+
+String  MqttVersiom         "Softwareversion"   {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_versiom"}
+//String MqttUptime "Uptime mqtt" {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_uptime"}
+Number  MqttClientTotal     "Client total"      {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_client_total"}
+Number  MqttClientActive    "Client active"     {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_client_active"}
+Number  MqttClientInactive  "Client inactive"   {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_client_inactive"}
+//Number MqttMessageStored "Message sored" {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_message_stored"}
+//Number MqttMessageReceived "Message reseived" {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_message_received"}
+//Number MqttMessageSend "Message send" {channel="mqtt:topic:mosquitto:mqtt-sever:mqtt_message_send"}

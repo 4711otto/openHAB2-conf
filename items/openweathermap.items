@@ -1,0 +1,17 @@
+String                  StationId                                   "Station-ID"                                                        (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:station#id"}
+String                  StationName                                 "Name"                                                              (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:station#name"}
+Location                StationLocation                             "Ort"                                                               (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:station#location"}
+DateTime                CurrentTimeStamp                            "Letzte Messung"                                                    (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#time-stamp"}
+String                  CurrentCondition                            "Wetterlage"                                                        (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#condition"}
+String                  CurrentConditionId                          "Wetterlage-ID"                                                     (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#condition-id"}
+Image                   CurrentIcon                                 "Icon"                                                              (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#icon"}
+Number:Temperature      CurrentTemperature                          "Außentemperatur"                                                   (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#temperature"}
+
+Number:Pressure         CurrentPressure                             "Luftdruck "                                                        (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#pressure"}
+Number:Dimensionless    CurrentHumidity                             "Luftfeuchtigkeit"                                                  (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#humidity"}
+Number:Speed            CurrentWindSpeed                            "Windgeschwindigkeit"                                               (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#wind-speed"}
+Number:Angle            CurrentWindDirection                        "Windrichtung"                                                      (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#wind-direction"}
+//Number:Speed            CurrentGustSpeed        "Windböengeschwindigkeit"   (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#gust-speed"}
+Number:Dimensionless    CurrentCloudiness                           "Bewölkung"                                                         (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#cloudiness"}
+Number:Length           CurrentRain                                 "Regen"                                                             (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#rain"}
+Number:Length           CurrentSnow                                 "Schnee"                                                            (Wetter)    {channel="openweathermap:weather-and-forecast:api:local:current#snow"}

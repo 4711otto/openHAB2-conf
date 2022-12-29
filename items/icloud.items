@@ -1,0 +1,3 @@
+String BatteryStatus_ipad2 "Battery status" {channel="icloud:device:myaccount:myiPad:batteryStatus"}
+Number BatteryLevel_ipad2 "Batterieladung" {channel="icloud:device:myaccount:myiPad:batteryLevel"}
+Switch LowBattery_ipad2 "Niedriger batteriestatus" {channel="icloud:device:myaccount:myiPad:lowBattery"}

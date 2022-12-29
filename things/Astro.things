@@ -1,0 +1,33 @@
+astro:sun:home "Astro org"@"Astro" [ geolocation="49.33125,6.71550,100", interval=600 ]{
+ /*Channels:
+        Type start : rise#start [
+            offset=0
+        ]
+           Type end : rise#end [
+            offset=0
+        ]
+         Type start : set#start [
+            offset=0
+        ]
+           Type end : set#end [
+            offset=0
+        ]
+*/
+}
+
+astro:sun:home_minus30 "Astro -30min"@"Astro" [ geolocation="49.33125,6.71550,100", interval=600 ]{
+Channels:
+   Type rangeEvent : set#event [
+            offset=-30
+        ]
+}
+
+astro:sun:home_minus60 "Astro -60min"@"Astro" [ geolocation="49.33125,6.71550,100", interval=600 ]{
+Channels:
+   Type rangeEvent : set#event [
+            offset=-60
+        ]
+}
+
+
+astro:moon:home [ geolocation="49.33125,6.71550", interval=600 ]

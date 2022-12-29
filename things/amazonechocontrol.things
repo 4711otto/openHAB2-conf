@@ -1,0 +1,10 @@
+Bridge amazonechocontrol:account:account1 "Amazon Account" @ "Accounts" 
+{
+    Thing echo                 echobad          "Alexa Bad" @ "Bad" [serialNumber="G0911W0794010THE"]
+    Thing echo                 echokueche       "Alexa Küche" @ "Kueche" [serialNumber="G090U61091740DHH"]
+   // Thing echoshow             echoshow1      "Alexa" @ "Kitchen" [serialNumber="SERIAL_NUMBER"]
+   // Thing echospot             echospot1      "Alexa" @ "Sleeping Room" [serialNumber="SERIAL_NUMBER"]
+   // Thing wha                  wha1           "Ground Floor Music Group" @ "Music Groups" [serialNumber="SERIAL_NUMBER"]
+   // Thing flashbriefingprofile flashbriefing1 "Flash Briefing Technical" @ "Flash Briefings" 
+   // Thing flashbriefingprofile flashbriefing2 "Flash Briefing Life Style" @ "Flash Briefings" 
+}
